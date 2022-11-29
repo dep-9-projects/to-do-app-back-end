@@ -29,7 +29,7 @@ public class ToDoItemDAOImpl implements ToDoItemDAO {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(Integer id) {
         try (PreparedStatement stm = connection.prepareStatement("DELETE FROM `to-do-item` WHERE id=?")) {
             stm.setInt(1,id);
             stm.executeUpdate();
@@ -39,7 +39,7 @@ public class ToDoItemDAOImpl implements ToDoItemDAO {
     }
 
     @Override
-    public boolean existsById(int id) {
+    public boolean existById(Integer id) {
         try (PreparedStatement stm = connection.prepareStatement("SELECT * FROM `to-do-item` WHERE id=?")) {
             stm.setInt(1,id);
             return stm.executeQuery().next();
@@ -68,7 +68,7 @@ public class ToDoItemDAOImpl implements ToDoItemDAO {
     }
 
     @Override
-    public Optional<ToDoItem> findById(int id) {
+    public Optional<ToDoItem> findById(Integer id) {
         try (PreparedStatement stm = connection.prepareStatement("SELECT * FROM `to-do-item` WHERE id=?")) {
             stm.setInt(1,id);
             ResultSet rst = stm.executeQuery();
