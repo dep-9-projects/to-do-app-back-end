@@ -8,5 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ToDoItemDAO extends CrudDAO<ToDoItem,Integer> {
+    void deleteAll();
 
 }
