@@ -13,7 +13,11 @@ CREATE TABLE `to-do-item`(
     CONSTRAINT fk_name FOREIGN KEY (username) REFERENCES `user` (userName)
 );
 
+INSERT INTO user (userName, password, fullName) VALUES ('Manelka','123456789','Manelka Nishan'),
+                                                       ('Visal','2345678','Visal Srimal'),
+                                                       ('Pradeep','1234567','pradeep sampath'),
+                                                       ('Naveen','432562345','Naveen samaranayaka'),
+                                                       ('Chathura','836292702','Chathura Rupe');
 
-/* Test Data */
-
-INSERT INTO `user` (`userName`, `password`, `fullName`) VALUES ('Kasun', 'Kasun', 'Kasun');
+INSERT INTO `to-do-item` (username, description, status) VALUES ('Manelka','Go home gota','DONE'),
+                                                                ('Visal','Go Home Ranil','NOT_DONE');

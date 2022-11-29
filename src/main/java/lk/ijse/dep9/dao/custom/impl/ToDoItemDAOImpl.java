@@ -122,4 +122,15 @@ public class ToDoItemDAOImpl implements ToDoItemDAO {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void deleteAll() {
+        try{
+            PreparedStatement stm = connection.prepareStatement("DELETE from `to-do-item`where true");
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }
