@@ -1,5 +1,6 @@
 package lk.ijse.dep9.dao;
 
+import lk.ijse.dep9.dao.custom.impl.QueryDAOImpl;
 import lk.ijse.dep9.dao.custom.impl.ToDoItemDAOImpl;
 import lk.ijse.dep9.dao.custom.impl.UserDAOImpl;
 
@@ -22,6 +23,9 @@ public class DAOFactory {
 
             case TO_DO_ITEM:
                 return (T) new ToDoItemDAOImpl(connection);
+                
+            case QUERY:
+                return (T) new QueryDAOImpl(connection);
 
             default:
                 return null;
