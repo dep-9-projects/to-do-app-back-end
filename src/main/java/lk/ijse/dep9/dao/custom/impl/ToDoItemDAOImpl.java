@@ -30,7 +30,7 @@ public class ToDoItemDAOImpl implements ToDoItemDAO {
 
     @Override
     public void deleteById(Integer id) {
-        try (PreparedStatement stm = connection.prepareStatement("DELETE FROM `to-do-item` WHERE id=?")) {
+        try (PreparedStatement stm = connection.prepareStatement("DELETE FROM `to-do-item` WHERE `id`=?")) {
             stm.setInt(1,id);
             stm.executeUpdate();
         } catch (SQLException e) {
@@ -91,12 +91,13 @@ public class ToDoItemDAOImpl implements ToDoItemDAO {
             stm.setString(1,toDoItem.getUsername());
             stm.setString(2,toDoItem.getDescription());
             stm.setString(3,toDoItem.getStatus().toString());
-            ResultSet rst = stm.getGeneratedKeys();
-            rst.next();
-            int id = rst.getInt(1);
-            toDoItem.setId(id);
+
 
             if (stm.executeUpdate() == 1){
+                ResultSet rst = stm.getGeneratedKeys();
+                rst.next();
+                int id = rst.getInt(1);
+                toDoItem.setId(id);
                 return toDoItem;
             }else {
                 throw new SQLException("Failed to save the toDoItem");
@@ -126,7 +127,7 @@ public class ToDoItemDAOImpl implements ToDoItemDAO {
     @Override
     public void deleteAll() {
         try{
-            PreparedStatement stm = connection.prepareStatement("DELETE from `to-do-item`where true");
+            PreparedStatement stm = connection.prepareStatement("DELETE FROM `to-do-item` WHERE true");
             stm.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
