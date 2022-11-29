@@ -1,11 +1,8 @@
-package lk.ijse.dep9.dao.custom;
+package lk.ijse.dep9.dao;
 
-import lk.ijse.dep9.dao.SuperDAO;
-import lk.ijse.dep9.dao.custom.impl.DAOTypes;
 import lk.ijse.dep9.dao.custom.impl.ToDoItemDAOImpl;
 import lk.ijse.dep9.dao.custom.impl.UserDAOImpl;
 
-import java.lang.reflect.Member;
 import java.sql.Connection;
 
 public class DAOFactory {
