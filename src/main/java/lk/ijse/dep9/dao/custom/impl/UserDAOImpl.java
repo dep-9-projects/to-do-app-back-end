@@ -34,7 +34,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void deleteById(String userName) {
         try {
-            PreparedStatement stm = connection.prepareStatement("DELETE FROM user WHERE userName=?");
+            PreparedStatement stm = connection.prepareStatement("DELETE  FROM `user` WHERE `userName`=?");
             stm.setString(1,userName);
             stm.executeUpdate();
         } catch (SQLException e) {
@@ -46,7 +46,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean existById(String userName) {
         try{
-            PreparedStatement stm = connection.prepareStatement("SELECT * FROM user WHERE userName=?");
+            PreparedStatement stm = connection.prepareStatement("SELECT * FROM `user` WHERE `userName`=?");
             stm.setString(1,userName);
             return stm.executeQuery().next();
         } catch (SQLException e) {
@@ -57,7 +57,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<User> findAll() {
         try{
-            PreparedStatement stm = connection.prepareStatement("SELECT * FROM user");
+            PreparedStatement stm = connection.prepareStatement("SELECT * FROM `user`");
             ResultSet rst = stm.executeQuery();
             ArrayList<User> users = new ArrayList<>();
             while (rst.next()){
@@ -76,7 +76,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public Optional<User> findById(String userName) {
         try{
-            PreparedStatement stm = connection.prepareStatement("SELECT * FROM user WHERE userName=?");
+            PreparedStatement stm = connection.prepareStatement("SELECT * FROM `user` WHERE `userName`=?");
             stm.setString(1,userName);
             ResultSet rst = stm.executeQuery();
             if (rst.next()){
@@ -95,10 +95,10 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User save(User user) {
         try{
-            PreparedStatement stm = connection.prepareStatement("INSERT INTO user (userName, password, fullName) VALUES (?,?,?)");
+            PreparedStatement stm = connection.prepareStatement("INSERT INTO `user` (`userName`, `password`, `fullName`) VALUES (?,?,?)");
             stm.setString(1,user.getUserName());
-            stm.setString(2,user.getUserName());
-            stm.setString(3,user.getUserName());
+            stm.setString(2,user.getPassword());
+            stm.setString(3,user.getFullName());
 
             if(stm.executeUpdate()==1){
                 return user;
@@ -113,9 +113,9 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User update(User user) {
+    public User update(User user){
         try{
-            PreparedStatement stm = connection.prepareStatement("UPDATE user SET password=? ,fullName=? WHERE userName=?");
+            PreparedStatement stm = connection.prepareStatement("UPDATE `user` SET `password`=? ,`fullName`=? WHERE `userName`=?");
             stm.setString(1, user.getPassword());
             stm.setString(2, user.getFullName());
             stm.setString(3, user.getUserName());

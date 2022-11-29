@@ -21,3 +21,5 @@ INSERT INTO `user` (`userName`, `password`, `fullName`) VALUES ('Manelka','12345
 
 INSERT INTO `to-do-item` (`username`, `description`, `status`) VALUES ('Manelka','Go home gota','DONE'),
                                                                 ('Visal','Go Home Ranil','NOT_DONE');
+
+
