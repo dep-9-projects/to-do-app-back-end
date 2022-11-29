@@ -108,6 +108,18 @@ public class ToDoItemDAOImpl implements ToDoItemDAO {
 
     @Override
     public ToDoItem update(ToDoItem toDoItem) {
-        return null;
+        try (PreparedStatement stm = connection.prepareStatement("UPDATE `to-do-item` SET username=?, description=?,status=? WHERE id=?")) {
+            stm.setString(1,toDoItem.getUsername());
+            stm.setString(2,toDoItem.getDescription());
+            stm.setString(3, String.valueOf(toDoItem.getStatus()));
+            stm.setInt(4,toDoItem.getId());
+            if (stm.executeUpdate() == 1){
+                return toDoItem;
+            }else {
+                throw new SQLException("Failed to update the toDo Item");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
