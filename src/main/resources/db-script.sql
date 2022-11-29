@@ -12,3 +12,8 @@ CREATE TABLE `to-do-item`(
     status ENUM('DONE','NOT_DONE'),
     CONSTRAINT fk_name FOREIGN KEY (username) REFERENCES `user` (userName)
 );
+
+
+/* Test Data */
+
+INSERT INTO `user` (`userName`, `password`, `fullName`) VALUES ('Kasun', 'Kasun', 'Kasun');

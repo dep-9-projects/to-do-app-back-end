@@ -22,7 +22,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public long count() {
         try {
-            PreparedStatement stm = connection.prepareStatement("SELECT COUNT(userName) FROM user");
+            PreparedStatement stm = connection.prepareStatement("SELECT COUNT(`userName`) FROM `user`");
             ResultSet rst = stm.executeQuery();
             rst.next();
             return rst.getLong(1);
